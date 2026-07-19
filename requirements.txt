@@ -5,6 +5,6 @@ torchvision
 torchaudio
 plotly
 pandas
-google-generativeai
+google-genai
 PyPDF2
 python-docx

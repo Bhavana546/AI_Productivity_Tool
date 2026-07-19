@@ -1,5 +1,5 @@
 import json
-import google.generativeai as genai
+from google import genai
 from services.prompt_engine import get_planner_prompt
 
 def generate_schedule(tasks: str, available_hours: float, start_time: str, break_duration: int, max_focus_length: int, api_key: str) -> dict:
@@ -9,10 +9,7 @@ def generate_schedule(tasks: str, available_hours: float, start_time: str, break
     if not api_key:
         raise ValueError("API key is required.")
 
-    genai.configure(api_key=api_key)
-
-    # Using gemini-1.5-flash as the default model
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    client = genai.Client(api_key=api_key)
 
     prompt = get_planner_prompt(
         tasks=tasks,
@@ -22,7 +19,10 @@ def generate_schedule(tasks: str, available_hours: float, start_time: str, break
         max_focus_length=max_focus_length
     )
 
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model='gemini-1.5-flash',
+        contents=prompt
+    )
 
     response_text = response.text.strip()
 
