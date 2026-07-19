@@ -38,6 +38,49 @@ Format the output strictly as a JSON array like this:
 ]
 """
 
+def get_productivity_coach_prompt(completed_tasks: str, overdue_tasks: str, pending_tasks: str, task_priorities: str, today_schedule: str, estimated_workload: str) -> str:
+    """
+    Generates a prompt to analyze tasks and schedule to provide personalized productivity insights.
+    """
+    return f"""You are an expert AI Productivity Coach. Analyze the user's tasks and schedule to provide personalized productivity insights and recommendations.
+
+Here is the data:
+- Completed tasks: {completed_tasks}
+- Overdue tasks: {overdue_tasks}
+- Pending tasks: {pending_tasks}
+- Task priorities: {task_priorities}
+- Today's schedule: {today_schedule}
+- Estimated workload: {estimated_workload}
+
+Generate the following insights:
+1. Productivity Score (0-100)
+2. Strengths
+3. Weaknesses
+4. Today's Recommendations
+5. Tomorrow's Suggestions
+6. Burnout Risk
+7. Focus Tips
+8. Time Management Tips
+
+CRITICAL INSTRUCTIONS:
+- You must return ONLY valid JSON.
+- DO NOT wrap the output in markdown blocks (e.g., ```json ... ```).
+- DO NOT return any text outside of the JSON object.
+- The output must be parseable by Python's `json.loads()` directly.
+
+Expected format:
+{{
+  "productivity_score": 82,
+  "strengths": ["..."],
+  "weaknesses": ["..."],
+  "today_recommendations": ["..."],
+  "tomorrow": ["..."],
+  "burnout_risk": "Low",
+  "focus_tip": "...",
+  "time_management": "..."
+}}
+"""
+
 def get_planner_prompt(tasks: str, available_hours: float, start_time: str, break_duration: int, max_focus_length: int) -> str:
     """
     Generates a prompt to create an optimized daily schedule from a list of tasks.
