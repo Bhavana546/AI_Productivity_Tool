@@ -37,3 +37,47 @@ Format the output strictly as a JSON array like this:
   }}
 ]
 """
+
+def get_planner_prompt(tasks: str, available_hours: float, start_time: str, break_duration: int, max_focus_length: int) -> str:
+    """
+    Generates a prompt to create an optimized daily schedule from a list of tasks.
+    """
+    return f"""You are an expert AI productivity planner. I will provide you with my current tasks and some preferences for my day. Your goal is to create an optimized daily schedule.
+
+Here are my tasks (as a JSON string):
+{tasks}
+
+Here are my preferences for today:
+- Available working hours: {available_hours} hours
+- Preferred start time: {start_time}
+- Break duration: {break_duration} minutes per break
+- Maximum focus session length: {max_focus_length} minutes
+
+To create the schedule, please adhere to these rules:
+- Prioritize urgent and high priority tasks first.
+- Balance the workload so it's realistic. Estimate completion times if none are provided, and do not overschedule.
+- Schedule breaks between focus sessions (respecting the max focus session length and break duration).
+- Minimize context switching where possible.
+- Calculate the correct start and end times for each scheduled item, starting from the preferred start time. Use 24-hour HH:MM format.
+
+CRITICAL INSTRUCTIONS:
+- You must return ONLY valid JSON.
+- DO NOT wrap the output in markdown blocks (e.g., ```json ... ```).
+- DO NOT return any text outside of the JSON object.
+- The output must be parseable by Python's `json.loads()` directly.
+
+Format the output strictly as a JSON object with this exact structure:
+{{
+  "schedule": [
+    {{
+      "start": "09:00",
+      "end": "10:30",
+      "task": "Complete AI Assignment",
+      "priority": "High"
+    }}
+  ],
+  "tips": [
+    "Take a 15 minute break after every 90 minutes."
+  ]
+}}
+"""
