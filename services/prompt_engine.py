@@ -124,3 +124,37 @@ Format the output strictly as a JSON object with this exact structure:
   ]
 }}
 """
+
+def get_meeting_summary_prompt(notes: str) -> str:
+    """
+    Generates a prompt to extract meeting summary details into structured JSON.
+    """
+    return f"""You are an expert AI meeting assistant. Analyze the provided meeting notes and extract the following information:
+- Executive Summary
+- Key Decisions
+- Action Items
+- Assigned People
+- Deadlines
+- Risks
+- Follow-up Tasks
+
+Here are the meeting notes:
+\"\"\"{notes}\"\"\"
+
+CRITICAL INSTRUCTIONS:
+- You must return ONLY valid JSON.
+- DO NOT wrap the output in markdown blocks (e.g., ```json ... ```).
+- DO NOT return any text outside of the JSON object.
+- The output must be parseable by Python's `json.loads()` directly.
+
+Format the output strictly as a JSON object with this exact structure:
+{{
+  "Executive Summary": "A concise summary of the meeting...",
+  "Key Decisions": ["Decision 1", "Decision 2"],
+  "Action Items": ["Action 1", "Action 2"],
+  "Assigned People": ["Person A", "Person B"],
+  "Deadlines": ["Deadline 1", "Deadline 2"],
+  "Risks": ["Risk 1", "Risk 2"],
+  "Follow-up Tasks": ["Task 1", "Task 2"]
+}}
+"""
