@@ -1,36 +1,187 @@
-# AI Productivity Hub
+# ⚡ AI Productivity Hub
 
-A Generative AI-powered productivity application designed to help individuals and teams work smarter. This application simplifies daily tasks, automates repetitive workflows, and improves overall efficiency using Generative AI.
+An AI-powered productivity assistant built using **Streamlit** and **Google Gemini AI** to help users work smarter by automating common productivity tasks such as document summarization, email generation, task extraction, meeting note summarization, smart planning, and AI-assisted conversations.
 
-## Features
+---
 
-- **Document Summarizer**: Quickly extract key points from long texts. Uses the `sshleifer/distilbart-cnn-12-6` model to generate concise summaries.
-- **Email & Content Generator**: Draft emails or generate ideas efficiently. Uses the `distilgpt2` model to generate text based on a given prompt.
-- **Meeting Notes Summarizer**: Turn your raw meeting notes into concise summaries, making it easier to identify action items and key takeaways.
-- **Task Extractor**: Extract actionable tasks and to-dos from a paragraph of text.
+## 🚀 Features
 
-## Requirements
+### 🤖 AI Chat
+- Interactive conversational AI powered by Google Gemini.
+- Ask questions, brainstorm ideas, and receive intelligent responses.
 
-Ensure you have Python 3.8+ installed. You can install the required dependencies using:
+### 📝 Document Summarizer
+- Summarizes long documents into concise key points.
+- Extracts the most important information quickly.
+
+### 📧 Email Generator
+- Generates professional emails from simple prompts.
+- Supports formal, informal, and business communication.
+
+### 📋 AI Task Manager
+- Extracts actionable tasks from paragraphs or meeting notes.
+- Helps organize work efficiently.
+
+### 🤝 Meeting Assistant
+- Converts meeting notes into:
+  - Summary
+  - Action Items
+  - Follow-ups
+
+### 📅 Smart Planner
+- Generates daily productivity plans.
+- Prioritizes tasks intelligently.
+
+### 💡 Productivity Coach
+- Provides AI-generated productivity suggestions.
+- Helps improve work habits and time management.
+
+### 🎯 AI Command Center
+- Uses natural language commands to automatically route requests to the appropriate AI module.
+
+Example:
+
+> "Summarize this document"
+
+Automatically opens the Document Summarizer.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Streamlit
+- **Programming Language:** Python
+- **AI Model:** Google Gemini API
+- **Prompt Engineering:** Custom prompt templates
+- **Version Control:** Git & GitHub
+- **Deployment:** Streamlit Community Cloud
+
+---
+
+## 📂 Project Structure
+
+```
+AI_Productivity_Tool/
+│
+├── components/
+├── pages/
+├── services/
+├── utils/
+├── app.py
+├── requirements.txt
+├── README.md
+└── streamlit.log
+```
+
+---
+
+## 📌 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Bhavana546/AI_Productivity_Tool.git
+```
+
+Move into the project directory
+
+```bash
+cd AI_Productivity_Tool
+```
+
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## How to Run
-
-1. Clone this repository.
-2. Install the required dependencies.
-3. Run the application using Streamlit:
+Run the application
 
 ```bash
 streamlit run app.py
 ```
 
-4. Open the provided local URL in your web browser to access the AI Productivity Hub.
+---
 
-## Technical Details
+## 🔑 Gemini API Configuration
 
-- **Framework**: Streamlit
-- **AI Models**: Hugging Face Transformers (`distilbart-cnn-12-6` for summarization, `distilgpt2` for text generation)
-- **Backend**: PyTorch
+Obtain a free API key from **Google AI Studio**.
+
+Store it securely using Streamlit Secrets:
+
+```toml
+GEMINI_API_KEY="YOUR_API_KEY"
+```
+
+---
+
+## 🎯 Use Cases
+
+- Students
+- Developers
+- Professionals
+- Researchers
+- Project Managers
+- Content Writers
+
+---
+
+## 📸 Application Modules
+
+- 🏠 Dashboard
+- 🤖 AI Chat
+- 📄 Document Summarizer
+- 📧 Email Generator
+- 📋 AI Task Manager
+- 🤝 Meeting Assistant
+- 📅 Smart Planner
+- 💡 Productivity Coach
+- 🎯 AI Command Center
+
+---
+
+## 🧠 Prompt Engineering
+
+The application uses carefully designed prompt templates for each module to improve response quality.
+
+Examples include:
+
+- Task Extraction Prompt
+- Email Generation Prompt
+- Meeting Summary Prompt
+- Productivity Planning Prompt
+- Command Routing Prompt
+
+---
+
+## 🌐 Deployment
+
+The application is deployed using **Streamlit Community Cloud**.
+
+---
+
+## 🔮 Future Enhancements
+
+- Voice Assistant
+- Calendar Integration
+- Google Drive Integration
+- PDF Export
+- Team Collaboration
+- User Authentication
+- Chat History
+- Analytics Dashboard
+
+---
+
+## 👩‍💻 Developer
+
+**Bhavana Kolluri**
+
+GitHub:
+https://github.com/Bhavana546
+
+---
+
+## ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub!
