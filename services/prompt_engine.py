@@ -190,3 +190,30 @@ Format the output strictly as a JSON object with this exact structure:
   "Follow-up Tasks": ["Task 1", "Task 2"]
 }}
 """
+
+def get_intent_classification_prompt(command: str) -> str:
+    """
+    Generates a prompt to classify the user's intent into one of the supported categories.
+    """
+    return f"""You are an intent classification engine for an AI Productivity application.
+Classify the following user command into exactly one of these supported intents:
+- "Task Manager"
+- "Smart Planner"
+- "Email Generator"
+- "Document Summarizer"
+- "Meeting Assistant"
+- "Productivity Coach"
+
+User command: "{command}"
+
+CRITICAL INSTRUCTIONS:
+- You must return ONLY a valid JSON object.
+- DO NOT wrap the output in markdown blocks (e.g., ```json ... ```).
+- DO NOT return any text outside of the JSON object.
+- The output must be parseable by Python's `json.loads()` directly.
+
+Format the output strictly as a JSON object with this exact structure:
+{{
+  "intent": "Task Manager"
+}}
+"""

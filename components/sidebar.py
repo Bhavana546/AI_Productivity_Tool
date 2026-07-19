@@ -11,6 +11,7 @@ def render_sidebar():
     st.sidebar.markdown("---")
 
     st.sidebar.page_link("app.py", label="Home", icon="🏠")
+    st.sidebar.page_link("pages/AI_Command_Center.py", label="AI Command Center", icon="🎛️")
     st.sidebar.page_link("pages/Dashboard.py", label="Dashboard", icon="📊")
     st.sidebar.page_link("pages/AI_Task_Manager.py", label="Task Manager", icon="✅")
     st.sidebar.page_link("pages/Document_Summarizer.py", label="Summarizer", icon="📄")
