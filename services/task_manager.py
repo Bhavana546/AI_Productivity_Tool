@@ -1,5 +1,5 @@
 import json
-import google.generativeai as genai
+from google import genai
 from services.prompt_engine import get_task_extraction_prompt
 
 def extract_tasks_from_text(text: str, api_key: str) -> list:
@@ -9,14 +9,14 @@ def extract_tasks_from_text(text: str, api_key: str) -> list:
     if not api_key:
         raise ValueError("API key is required.")
 
-    genai.configure(api_key=api_key)
-
-    # Using gemini-1.5-flash as the default model
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    client = genai.Client(api_key=api_key)
 
     prompt = get_task_extraction_prompt(text)
 
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model='gemini-1.5-flash',
+        contents=prompt
+    )
 
     response_text = response.text.strip()
 

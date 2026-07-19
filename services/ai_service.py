@@ -1,5 +1,5 @@
 import json
-import google.generativeai as genai
+from google import genai
 
 def get_ai_response(prompt: str, api_key: str) -> dict:
     """
@@ -8,11 +8,13 @@ def get_ai_response(prompt: str, api_key: str) -> dict:
     if not api_key:
         raise ValueError("API key is required.")
 
-    genai.configure(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
     # Using gemini-1.5-flash as the default model
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model='gemini-1.5-flash',
+        contents=prompt
+    )
     response_text = response.text.strip()
 
     # Handle potential markdown wrapping just in case the model ignores instructions

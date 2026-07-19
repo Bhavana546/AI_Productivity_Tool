@@ -1,5 +1,5 @@
 import json
-import google.generativeai as genai
+from google import genai
 from services.prompt_engine import get_productivity_coach_prompt
 import pandas as pd
 
@@ -10,10 +10,7 @@ def generate_productivity_insights(api_key: str, tasks_df: pd.DataFrame, schedul
     if not api_key:
         raise ValueError("Google Gemini API Key is required.")
 
-    genai.configure(api_key=api_key)
-
-    # Initialize the model
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    client = genai.Client(api_key=api_key)
 
     # Prepare data for prompt
     completed_tasks = []
@@ -70,7 +67,10 @@ def generate_productivity_insights(api_key: str, tasks_df: pd.DataFrame, schedul
 
     try:
         # Call the Gemini API
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model='gemini-1.5-flash',
+            contents=prompt
+        )
 
         # Extract and clean JSON response
         response_text = response.text
