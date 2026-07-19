@@ -125,6 +125,38 @@ Format the output strictly as a JSON object with this exact structure:
 }}
 """
 
+def get_document_summary_prompt(document_text: str) -> str:
+    """
+    Generates a prompt to extract a structured document summary.
+    """
+    return f"""You are an expert AI document summarizer. Analyze the provided document text and extract the following information:
+- Executive Summary
+- Key Insights
+- Important Dates
+- Action Items
+- Questions Generated
+- Keywords
+
+Here is the document text:
+\"\"\"{document_text}\"\"\"
+
+CRITICAL INSTRUCTIONS:
+- You must return ONLY valid JSON.
+- DO NOT wrap the output in markdown blocks (e.g., ```json ... ```).
+- DO NOT return any text outside of the JSON object.
+- The output must be parseable by Python's `json.loads()` directly.
+
+Format the output strictly as a JSON object with this exact structure:
+{{
+  "Executive Summary": "A concise executive summary...",
+  "Key Insights": ["Insight 1", "Insight 2"],
+  "Important Dates": ["Date 1: Event 1", "Date 2: Event 2"],
+  "Action Items": ["Action 1", "Action 2"],
+  "Questions Generated": ["Question 1", "Question 2"],
+  "Keywords": ["Keyword 1", "Keyword 2"]
+}}
+"""
+
 def get_meeting_summary_prompt(notes: str) -> str:
     """
     Generates a prompt to extract meeting summary details into structured JSON.
